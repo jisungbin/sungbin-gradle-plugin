@@ -4,7 +4,7 @@ gradle-dependency-handler-extensions = "1.1.0"
 
 jetbrains-annotation = "24.0.1"
 
-kotlin-core = "1.9.0"
+kotlin-core = "1.9.10"
 kotlin-coroutines = "1.7.3"
 kotlin-dokka = "1.8.20"
 kotlin-detekt = "1.23.1"
