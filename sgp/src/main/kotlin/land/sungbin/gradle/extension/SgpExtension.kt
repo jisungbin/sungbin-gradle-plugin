@@ -7,6 +7,14 @@
 
 package land.sungbin.gradle.extension
 
+import land.sungbin.gradle.extension.config.Android
+import land.sungbin.gradle.util.SgpDsl
+
+@SgpDsl
 public open class SgpExtension {
-  public open var android: AndroidType? = null
+  internal var android: Android? = null
+
+  public fun android(config: Android.() -> Unit) {
+    android = Android().apply(config)
+  }
 }
