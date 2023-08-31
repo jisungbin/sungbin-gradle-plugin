@@ -7,15 +7,21 @@
 
 package land.sungbin.gradle.extension.config
 
+import land.sungbin.gradle.constant.Plugins
 import land.sungbin.gradle.util.SgpDsl
-import org.gradle.api.JavaVersion
 
 public enum class AndroidType {
-  Application, Library,
+  Application, Library;
+
+  internal fun toPluginId() =
+    when (this) {
+      Application -> Plugins.AndroidApplication
+      Library -> Plugins.AndroidLibrary
+    }
 }
 
 @SgpDsl
-public class Android {
+public class Android internal constructor() {
   internal var type: AndroidType? = null
   internal val options = AndroidOptions()
 
@@ -30,6 +36,6 @@ public class Android {
   }
 }
 
-public class AndroidOptions {
-  public var jdkVersion: JavaVersion = JavaVersion.VERSION_17
+public class AndroidOptions internal constructor() {
+  public var jdkVersion: Int = 11
 }

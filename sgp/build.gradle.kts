@@ -7,6 +7,7 @@
 
 @file:Suppress("INLINE_FROM_HIGHER_PLATFORM")
 
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("PrivatePropertyName")
@@ -41,7 +42,27 @@ sourceSets {
 }
 
 tasks.withType<Test>().configureEach {
+  outputs.upToDateWhen { false }
   useJUnitPlatform()
+  testLogging {
+    events = setOf(
+      TestLogEvent.PASSED,
+      TestLogEvent.SKIPPED,
+      TestLogEvent.FAILED,
+    )
+  }
+  afterSuite(
+    KotlinClosure2<TestDescriptor, TestResult, Unit>({ desc, result ->
+      if (desc.parent == null) { // will match the outermost suite
+        val output = "Results: ${result.resultType} " +
+          "(${result.testCount} tests, " +
+          "${result.successfulTestCount} passed, " +
+          "${result.failedTestCount} failed, " +
+          "${result.skippedTestCount} skipped)"
+        println(output)
+      }
+    })
+  )
 }
 
 tasks
@@ -60,7 +81,12 @@ tasks
 dependencies {
   implementations(
     libs.kotlin.gradle,
+    libs.gradle.android,
     libs.gradle.publish.maven,
+    libs.jetbrains.annotation,
   )
-  testImplementation(libs.test.kotest.framework)
+
+  testImplementation(libs.test.kotest)
+
+  detektPlugins(libs.detekt.plugin.formatting)
 }

@@ -8,13 +8,24 @@
 package land.sungbin.gradle.extension
 
 import land.sungbin.gradle.extension.config.Android
+import land.sungbin.gradle.extension.config.Features
 import land.sungbin.gradle.util.SgpDsl
 
 @SgpDsl
 public open class SgpExtension {
-  internal var android: Android? = null
+  internal var android = Android()
+  internal var features = Features()
 
   public fun android(config: Android.() -> Unit) {
-    android = Android().apply(config)
+    android = android.apply(config)
+  }
+
+  public fun features(config: Features.() -> Unit) {
+    features = features.apply(config)
+  }
+
+  // entry point
+  public operator fun invoke(block: SgpExtension.() -> Unit) {
+    block()
   }
 }
