@@ -7,6 +7,11 @@
 
 @file:Suppress("INLINE_FROM_HIGHER_PLATFORM")
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+@Suppress("PrivatePropertyName")
+private val EXPLICIT_API = "-Xexplicit-api=strict"
+
 plugins {
   `kotlin-dsl`
   id(libs.plugins.kotlin.jvm.get().pluginId)
@@ -31,13 +36,26 @@ kotlin {
 }
 
 sourceSets {
-  getByName("main").java.srcDirs("src/main/kotlin")
-  getByName("test").java.srcDirs("src/test/kotlin")
+  getByName("main").java.srcDir("src/main/kotlin")
+  getByName("test").java.srcDir("src/test/kotlin")
 }
 
 tasks.withType<Test>().configureEach {
   useJUnitPlatform()
 }
+
+tasks
+  .matching { task ->
+    task is KotlinCompile && !task.name.contains("test", ignoreCase = true)
+  }
+  .configureEach {
+    if (!project.hasProperty("kotlin.optOutExplicitApi")) {
+      val kotlinCompile = this as KotlinCompile
+      if (EXPLICIT_API !in kotlinCompile.kotlinOptions.freeCompilerArgs) {
+        kotlinCompile.kotlinOptions.freeCompilerArgs += EXPLICIT_API
+      }
+    }
+  }
 
 dependencies {
   implementations(
