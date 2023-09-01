@@ -10,7 +10,6 @@ package land.sungbin.gradle
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactly
-import io.kotest.matchers.shouldBe
 import land.sungbin.gradle.extension.SgpExtension
 import land.sungbin.gradle.extension.config.Features.Ktor
 

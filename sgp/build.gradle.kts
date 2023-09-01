@@ -93,6 +93,4 @@ dependencies {
   )
 
   testImplementation(libs.test.kotest)
-
-  detektPlugins(libs.detekt.plugin.formatting)
 }

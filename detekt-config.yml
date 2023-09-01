@@ -12,43 +12,6 @@ performance:
   SpreadOperator:
     active: false
 
-formatting:
-  TrailingCommaOnCallSite:
-    active: true
-  TrailingCommaOnDeclarationSite:
-    active: true
-  ImportOrdering:
-    active: false
-  MaximumLineLength:
-    active: false
-  MultiLineIfElse:
-    active: false
-  Indentation:
-    indentSize: 2
-  PropertyWrapping:
-    active: false
-  ParameterWrapping:
-    active: false
-  ParameterListWrapping:
-    active: false
-  ArgumentListWrapping:
-    indentSize: 2
-    maxLineLength: 150
-  KdocWrapping:
-    active: true
-    indentSize: 2
-  Wrapping:
-    indentSize: 2
-    active: false
-  CommentWrapping:
-    active: false
-  Filename:
-    active: false
-  PackageName:
-    active: false
-  AnnotationOnSeparateLine:
-    active: false
-
 style:
   MagicNumber:
     active: false

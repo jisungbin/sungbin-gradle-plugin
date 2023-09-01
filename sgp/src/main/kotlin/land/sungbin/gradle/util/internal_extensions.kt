@@ -33,7 +33,7 @@ internal inline operator fun <T : Any, C : NamedDomainObjectContainer<T>> C.invo
   }
 
 internal val Project.androidExtensionOrNull: CommonExtension<*, *, *, *, *>?
-  get() = extensions.findByName("android") as? CommonExtension<*, *, *, *, *>;
+  get() = extensions.findByName("android") as? CommonExtension<*, *, *, *, *>
 
 internal fun Project.implementation(dependencyNotation: Any) {
   dependencies.add("implementation", dependencyNotation)
