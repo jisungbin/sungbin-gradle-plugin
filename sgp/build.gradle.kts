@@ -16,14 +16,15 @@ private val EXPLICIT_API = "-Xexplicit-api=strict"
 plugins {
   `kotlin-dsl`
   id(libs.plugins.kotlin.jvm.get().pluginId)
+  alias(libs.plugins.gradle.publish.maven)
 }
 
 gradlePlugin {
   plugins {
-//    register(pluginName) {
-//      implementationClass = className
-//      id = "sungbin.gradle.$pluginName"
-//    }
+    create("sgp") {
+      id = "land.sungbin.gradle"
+      implementationClass = "land.sungbin.gradle.SungbinGradlePlugin"
+    }
   }
 }
 

@@ -24,8 +24,8 @@ public open class SgpExtension {
     features = features.apply(config)
   }
 
-  // entry point
-  public operator fun invoke(block: SgpExtension.() -> Unit) {
+  // entry point for testing
+  internal operator fun invoke(block: SgpExtension.() -> Unit) {
     block()
   }
 }

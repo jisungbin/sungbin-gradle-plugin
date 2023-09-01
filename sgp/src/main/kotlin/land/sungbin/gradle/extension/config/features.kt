@@ -11,28 +11,29 @@ import land.sungbin.gradle.util.SgpDsl
 
 @SgpDsl
 public class Features internal constructor() {
-  internal var moshi = false
-  internal var moshix = emptySet<MoshiX>()
+  private val _ktor = mutableSetOf<Ktor>()
+  internal val ktor: Set<Ktor> get() = _ktor
 
-  public enum class MoshiX {
-    IR;
+  public enum class Ktor {
+    Client, CIOEngine;
 
     @SgpDsl
     public class Config internal constructor() {
-      internal val uses = mutableListOf<MoshiX>()
+      internal val uses = mutableListOf<Ktor>()
 
-      public fun ir() {
-        uses += IR
+      public fun client() {
+        uses += Client
+      }
+
+      @Suppress("FunctionName")
+      public fun CIOEngine() {
+        uses += CIOEngine
       }
     }
   }
 
-  public fun moshi() {
-    moshi = true
-  }
-
-  public fun moshix(config: MoshiX.Config.() -> Unit) {
-    val result = MoshiX.Config().apply(config)
-    moshix = moshix.toMutableSet().apply { addAll(result.uses) }
+  public fun ktor(config: Ktor.Config.() -> Unit) {
+    val block = Ktor.Config().apply(config)
+    _ktor.addAll(block.uses)
   }
 }
