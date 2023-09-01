@@ -8,5 +8,6 @@
 !/.idea/inspectionProfiles
 *.iml
 .gradle
+docs
 build
 local.properties

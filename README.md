@@ -3,12 +3,18 @@
 </p>
 <h1 align="center">Sungbin Gradle Plugin</h1>
 
+---
+
+![version](https://img.shields.io/maven-central/v/land.sungbin/sungbin-gradle-plugin?style=flat-square)
+
 ```kotlin
-plugins {
-  id("land.sungbin.gradle")
-}
+plugins { id("land.sungbin.gradle") }
+android { jdkVersion(17) }
 
 sgp {
-  // do something...
+  android { kotlinSourceSet() }
+  features {
+    ktor { client(); CIOEngine() }
+  }
 }
 ```

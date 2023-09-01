@@ -7,15 +7,20 @@
 
 @file:Suppress("UnstableApiUsage")
 
+include(":sample")
+
 rootProject.name = "sgp"
 
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
-pluginManagement {
-  repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
+dependencyResolutionManagement {
+  pluginManagement {
+    repositories {
+      mavenLocal()
+      google()
+      mavenCentral()
+      gradlePluginPortal()
+    }
   }
 }
 
