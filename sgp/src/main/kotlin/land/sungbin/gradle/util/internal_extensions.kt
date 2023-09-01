@@ -5,10 +5,11 @@
  * Please see full license: https://github.com/jisungbin/sungbin-gradle-plugin/blob/main/LICENSE
  */
 
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "unused")
 
 package land.sungbin.gradle.util
 
+import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
@@ -30,6 +31,9 @@ internal inline operator fun <T : Any, C : NamedDomainObjectContainer<T>> C.invo
   apply {
     configuration.execute(NamedDomainObjectContainerScope.of(this))
   }
+
+internal val Project.androidExtensionOrNull: CommonExtension<*, *, *, *, *>?
+  get() = extensions.findByName("android") as? CommonExtension<*, *, *, *, *>;
 
 internal fun Project.implementation(dependencyNotation: Any) {
   dependencies.add("implementation", dependencyNotation)

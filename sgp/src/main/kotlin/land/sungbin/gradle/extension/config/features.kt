@@ -21,10 +21,12 @@ public class Features internal constructor() {
     public class Config internal constructor() {
       internal val uses = mutableListOf<Ktor>()
 
+      /** ktor-client-core 의존성을 추가합니다.  */
       public fun client() {
         uses += Client
       }
 
+      /** io.ktor:ktor-client-cio 의존성을 추가합니다. */
       @Suppress("FunctionName")
       public fun CIOEngine() {
         uses += CIOEngine

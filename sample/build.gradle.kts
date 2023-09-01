@@ -1,3 +1,5 @@
+import land.sungbin.gradle.util.jdkVersion
+
 /*
  * Developed by Ji Sungbin 2023.
  *
@@ -6,19 +8,23 @@
  */
 
 plugins {
-  id(libs.plugins.kotlin.jvm.get().pluginId)
+  id("com.android.library")
   id("land.sungbin.gradle") version "0.1.0"
 }
 
+android {
+  namespace = "sungbin.gradle.sample.helloworld"
+  jdkVersion(17)
+}
+
 sgp {
+  android {
+    kotlinSourceSet()
+  }
   features {
     ktor {
       client()
       CIOEngine()
     }
   }
-}
-
-dependencies {
-  implementation(libs.kotlinx.coroutines)
 }

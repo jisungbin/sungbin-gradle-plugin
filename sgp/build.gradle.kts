@@ -16,6 +16,7 @@ private val EXPLICIT_API = "-Xexplicit-api=strict"
 plugins {
   `kotlin-dsl`
   id(libs.plugins.kotlin.jvm.get().pluginId)
+  alias(libs.plugins.kotlin.dokka)
   alias(libs.plugins.gradle.publish.maven)
 }
 
@@ -40,6 +41,10 @@ kotlin {
 sourceSets {
   getByName("main").java.srcDir("src/main/kotlin")
   getByName("test").java.srcDir("src/test/kotlin")
+}
+
+tasks.dokkaHtml {
+  outputDirectory.set(rootDir.resolve("docs"))
 }
 
 tasks.withType<Test>().configureEach {

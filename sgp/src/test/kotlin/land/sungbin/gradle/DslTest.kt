@@ -8,10 +8,10 @@
 package land.sungbin.gradle
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import land.sungbin.gradle.extension.SgpExtension
-import land.sungbin.gradle.extension.config.AndroidType
 import land.sungbin.gradle.extension.config.Features.Ktor
 
 class DslTest : StringSpec() {
@@ -21,9 +21,7 @@ class DslTest : StringSpec() {
 
       sgp {
         android {
-          application {
-            jdkVersion = 17
-          }
+          kotlinSourceSet()
         }
 
         features {
@@ -34,9 +32,7 @@ class DslTest : StringSpec() {
         }
       }
 
-      sgp.android.type shouldBe AndroidType.Application
-      sgp.android.options.jdkVersion shouldBe 17
-
+      sgp.android.isKotlinSourceSet.shouldBeTrue()
       sgp.features.ktor shouldContainExactly setOf(Ktor.Client, Ktor.CIOEngine)
     }
   }
