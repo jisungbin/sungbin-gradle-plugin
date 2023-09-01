@@ -5,8 +5,8 @@ gradle-dependency-handler-extensions = "1.1.0"
 
 jetbrains-annotation = "24.0.1"
 
-kotlin-core = "1.9.0"
-kotlin-dokka = "1.8.20"
+kotlin-core = "1.9.10"
+kotlin-dokka = "1.9.0"
 kotlin-detekt = "1.23.1"
 kotlin-ktlint-gradle = "11.5.1"
 kotlin-ktlint-source = "0.48.2"
