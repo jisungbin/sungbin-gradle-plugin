@@ -9,6 +9,7 @@ package land.sungbin.gradle.extension.config
 
 import land.sungbin.gradle.util.SgpDsl
 
+/** SGP에서 구성 가능한 의존성 모음 */
 @SgpDsl
 public class Features internal constructor() {
   private val _ktor = mutableSetOf<Ktor>()
@@ -34,6 +35,7 @@ public class Features internal constructor() {
     }
   }
 
+  /** ktor 의존성을 선택에 맞게 추가합니다. */
   public fun ktor(config: Ktor.Config.() -> Unit) {
     val block = Ktor.Config().apply(config)
     _ktor.addAll(block.uses)
